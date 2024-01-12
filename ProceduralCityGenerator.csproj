@@ -1,0 +1,15 @@
+<Project Sdk="Godot.NET.Sdk/4.2.1">
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <EnableDynamicLoading>true</EnableDynamicLoading>
+    </PropertyGroup>
+    <ItemGroup>
+        <PackageReference Include="Advanced.Algorithms" Version="1.0.0"/>
+        <PackageReference Include="NetTopologySuite" Version="2.5.0"/>
+        <PackageReference Include="SimplexNoise" Version="2.0.0"/>
+        <PackageReference Include="Simplify.NETStandard" Version="1.0.2"/>
+    </ItemGroup>
+    <ItemGroup>
+        <Folder Include="Scenes\"/>
+    </ItemGroup>
+</Project>

@@ -1,0 +1,368 @@
+[gd_scene load_steps=12 format=3 uid="uid://cm8a07k34k065"]
+
+[ext_resource type="Environment" uid="uid://6fklvphu014u" path="res://CameraEnvironment.tres" id="1_m02sb"]
+[ext_resource type="Script" path="res://Scripts/CameraController.cs" id="1_tgwq1"]
+[ext_resource type="StyleBox" uid="uid://d385yneucsjb5" path="res://GUIMaterials/PressedButton.tres" id="2_pw8xn"]
+[ext_resource type="Script" path="res://Scripts/LineDrawer3D.cs" id="3_jelu0"]
+[ext_resource type="PackedScene" uid="uid://c34d65rdo2d2f" path="res://Prefabs/tensorFieldPoint.tscn" id="4_3wj43"]
+[ext_resource type="Script" path="res://Scripts/PointDrawer3D.cs" id="4_rx5bt"]
+[ext_resource type="Script" path="res://Scripts/MainScript.cs" id="4_sxoga"]
+[ext_resource type="Environment" uid="uid://dknc6bkcyjc43" path="res://default_env.tres" id="6_lt8wb"]
+[ext_resource type="Script" path="res://Scripts/GUI/GuiController.cs" id="7_kas2y"]
+[ext_resource type="Material" uid="uid://dop7fuh6lrt1o" path="res://Materials/FloorMaterial.tres" id="7_l5vx1"]
+
+[sub_resource type="PlaneMesh" id="1"]
+
+[node name="Root" type="Node3D"]
+
+[node name="GUI" type="Control" parent="." node_paths=PackedStringArray("_mainScript", "addAllRoads", "addFieldButton", "addMainRoads", "addMajorRoads", "addMinorRoads", "angleEditContainer", "generateBuildings", "generateCity", "hideMenuButton", "listTensorPointsContainer", "mainMenuPanel", "regenerateBuildings", "regenerateTrees", "saveModelButton", "selectGridButton", "selectRadialButton", "showMenuButton", "sliderAngle", "sliderDecay", "sliderSize", "tabBar", "tabContainer1", "tabContainer2", "tensorPropertiesContainer", "textEditAngle", "textEditDecay", "textEditSize")]
+layout_mode = 3
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_bottom = 2.0
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("7_kas2y")
+_mainScript = NodePath("../MainScript")
+addAllRoads = NodePath("MainMenu/MenuVBoxContainer/TabMenu/All roads")
+addFieldButton = NodePath("MainMenu/MenuVBoxContainer/TabMenu2/ScrollContainer/PointContainer/TensorProperties/AddField")
+addMainRoads = NodePath("MainMenu/MenuVBoxContainer/TabMenu/Main roads")
+addMajorRoads = NodePath("MainMenu/MenuVBoxContainer/TabMenu/Major roads")
+addMinorRoads = NodePath("MainMenu/MenuVBoxContainer/TabMenu/Minor roads")
+angleEditContainer = NodePath("MainMenu/MenuVBoxContainer/TabMenu2/ScrollContainer/PointContainer/TensorProperties/AngleContainerProperties")
+generateBuildings = NodePath("MainMenu/MenuVBoxContainer/TabMenu/Generate buildings")
+generateCity = NodePath("MainMenu/MenuVBoxContainer/TabMenu/Generate city 3D")
+hideMenuButton = NodePath("MainMenu/MenuVBoxContainer/TabMenu/Hide menu")
+listTensorPointsContainer = NodePath("MainMenu/MenuVBoxContainer/TabMenu2/ScrollContainer/PointContainer/ScrollContainer/Tensorfield points")
+mainMenuPanel = NodePath("MainMenu")
+regenerateBuildings = NodePath("MainMenu/MenuVBoxContainer/TabMenu/Regenerate buildings")
+regenerateTrees = NodePath("MainMenu/MenuVBoxContainer/TabMenu/Regenerate trees")
+saveModelButton = NodePath("MainMenu/MenuVBoxContainer/TabMenu/Export model")
+selectGridButton = NodePath("MainMenu/MenuVBoxContainer/TabMenu2/ScrollContainer/PointContainer/SelectGrid")
+selectRadialButton = NodePath("MainMenu/MenuVBoxContainer/TabMenu2/ScrollContainer/PointContainer/SelectRadial")
+showMenuButton = NodePath("Show menu")
+sliderAngle = NodePath("MainMenu/MenuVBoxContainer/TabMenu2/ScrollContainer/PointContainer/TensorProperties/AngleContainerProperties/HBoxContainer2/HSlider")
+sliderDecay = NodePath("MainMenu/MenuVBoxContainer/TabMenu2/ScrollContainer/PointContainer/TensorProperties/DecayContainerProperties/HBoxContainer3/HSlider")
+sliderSize = NodePath("MainMenu/MenuVBoxContainer/TabMenu2/ScrollContainer/PointContainer/TensorProperties/SizeContainerProperties/HBoxContainer/HSlider")
+tabBar = NodePath("MainMenu/MenuVBoxContainer/TabBar")
+tabContainer1 = NodePath("MainMenu/MenuVBoxContainer/TabMenu")
+tabContainer2 = NodePath("MainMenu/MenuVBoxContainer/TabMenu2")
+tensorPointPrefab = ExtResource("4_3wj43")
+tensorPropertiesContainer = NodePath("MainMenu/MenuVBoxContainer/TabMenu2/ScrollContainer/PointContainer/TensorProperties")
+textEditAngle = NodePath("MainMenu/MenuVBoxContainer/TabMenu2/ScrollContainer/PointContainer/TensorProperties/AngleContainerProperties/HBoxContainer2/LineEdit")
+textEditDecay = NodePath("MainMenu/MenuVBoxContainer/TabMenu2/ScrollContainer/PointContainer/TensorProperties/DecayContainerProperties/HBoxContainer3/LineEdit")
+textEditSize = NodePath("MainMenu/MenuVBoxContainer/TabMenu2/ScrollContainer/PointContainer/TensorProperties/SizeContainerProperties/HBoxContainer/LineEdit")
+
+[node name="Show menu" type="Button" parent="GUI"]
+layout_mode = 2
+offset_right = 99.0
+offset_bottom = 31.0
+focus_mode = 0
+text = "Show menu (ESC)"
+
+[node name="MainMenu" type="PanelContainer" parent="GUI"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -200.0
+offset_bottom = 650.0
+grow_horizontal = 0
+
+[node name="MenuVBoxContainer" type="VBoxContainer" parent="GUI/MainMenu"]
+layout_mode = 2
+
+[node name="TabBar" type="TabBar" parent="GUI/MainMenu/MenuVBoxContainer"]
+clip_contents = true
+layout_mode = 2
+tab_count = 2
+tab_alignment = 1
+clip_tabs = false
+max_tab_width = 150
+tab_0/title = "Roads"
+tab_1/title = "Tensor fields"
+
+[node name="TabMenu" type="VBoxContainer" parent="GUI/MainMenu/MenuVBoxContainer"]
+layout_mode = 2
+
+[node name="Hide menu" type="Button" parent="GUI/MainMenu/MenuVBoxContainer/TabMenu"]
+layout_mode = 2
+focus_mode = 0
+text = "Hide menu (ESC)"
+
+[node name="Main roads" type="Button" parent="GUI/MainMenu/MenuVBoxContainer/TabMenu"]
+layout_mode = 2
+focus_mode = 0
+text = "Main roads"
+
+[node name="Major roads" type="Button" parent="GUI/MainMenu/MenuVBoxContainer/TabMenu"]
+layout_mode = 2
+focus_mode = 0
+text = "Major roads"
+
+[node name="Minor roads" type="Button" parent="GUI/MainMenu/MenuVBoxContainer/TabMenu"]
+layout_mode = 2
+focus_mode = 0
+text = "Minor roads"
+
+[node name="All roads" type="Button" parent="GUI/MainMenu/MenuVBoxContainer/TabMenu"]
+layout_mode = 2
+tooltip_text = "Generate all roads at once"
+focus_mode = 0
+text = "All roads"
+
+[node name="Generate buildings" type="Button" parent="GUI/MainMenu/MenuVBoxContainer/TabMenu"]
+layout_mode = 2
+tooltip_text = "Generate buildings.
+You need to generate at least one road first"
+focus_mode = 0
+text = "Generate buildings"
+
+[node name="Generate city 3D" type="Button" parent="GUI/MainMenu/MenuVBoxContainer/TabMenu"]
+layout_mode = 2
+focus_mode = 0
+text = "Generate city 3D"
+
+[node name="Regenerate buildings" type="Button" parent="GUI/MainMenu/MenuVBoxContainer/TabMenu"]
+layout_mode = 2
+tooltip_text = "Change building height distribution"
+focus_mode = 0
+text = "Regenerate 3D buildings"
+
+[node name="Regenerate trees" type="Button" parent="GUI/MainMenu/MenuVBoxContainer/TabMenu"]
+layout_mode = 2
+tooltip_text = "Change building tree distribution"
+focus_mode = 0
+text = "Regenerate trees"
+
+[node name="Export model" type="Button" parent="GUI/MainMenu/MenuVBoxContainer/TabMenu"]
+layout_mode = 2
+focus_mode = 0
+text = "Export 3D model"
+
+[node name="TabMenu2" type="VBoxContainer" parent="GUI/MainMenu/MenuVBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="GUI/MainMenu/MenuVBoxContainer/TabMenu2"]
+clip_contents = false
+custom_minimum_size = Vector2(150, 500)
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="PointContainer" type="VBoxContainer" parent="GUI/MainMenu/MenuVBoxContainer/TabMenu2/ScrollContainer"]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label5" type="Label" parent="GUI/MainMenu/MenuVBoxContainer/TabMenu2/ScrollContainer/PointContainer"]
+layout_mode = 2
+text = "Tensor field type"
+horizontal_alignment = 1
+
+[node name="SelectRadial" type="Button" parent="GUI/MainMenu/MenuVBoxContainer/TabMenu2/ScrollContainer/PointContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_override_styles/pressed = ExtResource("2_pw8xn")
+toggle_mode = true
+text = "Radial
+"
+
+[node name="SelectGrid" type="Button" parent="GUI/MainMenu/MenuVBoxContainer/TabMenu2/ScrollContainer/PointContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_override_styles/pressed = ExtResource("2_pw8xn")
+toggle_mode = true
+text = "Grid"
+
+[node name="TensorProperties" type="VBoxContainer" parent="GUI/MainMenu/MenuVBoxContainer/TabMenu2/ScrollContainer/PointContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GUI/MainMenu/MenuVBoxContainer/TabMenu2/ScrollContainer/PointContainer/TensorProperties"]
+layout_mode = 2
+text = "Properties"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="SizeContainerProperties" type="VBoxContainer" parent="GUI/MainMenu/MenuVBoxContainer/TabMenu2/ScrollContainer/PointContainer/TensorProperties"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="GUI/MainMenu/MenuVBoxContainer/TabMenu2/ScrollContainer/PointContainer/TensorProperties/SizeContainerProperties"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Size"
+vertical_alignment = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/MainMenu/MenuVBoxContainer/TabMenu2/ScrollContainer/PointContainer/TensorProperties/SizeContainerProperties"]
+layout_mode = 2
+
+[node name="LineEdit" type="LineEdit" parent="GUI/MainMenu/MenuVBoxContainer/TabMenu2/ScrollContainer/PointContainer/TensorProperties/SizeContainerProperties/HBoxContainer"]
+layout_mode = 2
+focus_mode = 1
+theme_override_constants/minimum_character_width = 3
+text = "5"
+max_length = 4
+caret_blink = true
+
+[node name="HSlider" type="HSlider" parent="GUI/MainMenu/MenuVBoxContainer/TabMenu2/ScrollContainer/PointContainer/TensorProperties/SizeContainerProperties/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+focus_mode = 0
+max_value = 20.0
+step = 0.5
+value = 5.0
+
+[node name="AngleContainerProperties" type="VBoxContainer" parent="GUI/MainMenu/MenuVBoxContainer/TabMenu2/ScrollContainer/PointContainer/TensorProperties"]
+layout_mode = 2
+
+[node name="Label3" type="Label" parent="GUI/MainMenu/MenuVBoxContainer/TabMenu2/ScrollContainer/PointContainer/TensorProperties/AngleContainerProperties"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Angle"
+vertical_alignment = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="GUI/MainMenu/MenuVBoxContainer/TabMenu2/ScrollContainer/PointContainer/TensorProperties/AngleContainerProperties"]
+layout_mode = 2
+
+[node name="LineEdit" type="LineEdit" parent="GUI/MainMenu/MenuVBoxContainer/TabMenu2/ScrollContainer/PointContainer/TensorProperties/AngleContainerProperties/HBoxContainer2"]
+layout_mode = 2
+focus_mode = 1
+theme_override_constants/minimum_character_width = 3
+text = "45"
+max_length = 3
+caret_blink = true
+
+[node name="HSlider" type="HSlider" parent="GUI/MainMenu/MenuVBoxContainer/TabMenu2/ScrollContainer/PointContainer/TensorProperties/AngleContainerProperties/HBoxContainer2"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+focus_mode = 0
+max_value = 360.0
+step = 0.5
+value = 45.0
+
+[node name="DecayContainerProperties" type="VBoxContainer" parent="GUI/MainMenu/MenuVBoxContainer/TabMenu2/ScrollContainer/PointContainer/TensorProperties"]
+layout_mode = 2
+
+[node name="Label4" type="Label" parent="GUI/MainMenu/MenuVBoxContainer/TabMenu2/ScrollContainer/PointContainer/TensorProperties/DecayContainerProperties"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Decay"
+vertical_alignment = 2
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="GUI/MainMenu/MenuVBoxContainer/TabMenu2/ScrollContainer/PointContainer/TensorProperties/DecayContainerProperties"]
+layout_mode = 2
+
+[node name="LineEdit" type="LineEdit" parent="GUI/MainMenu/MenuVBoxContainer/TabMenu2/ScrollContainer/PointContainer/TensorProperties/DecayContainerProperties/HBoxContainer3"]
+layout_mode = 2
+focus_mode = 1
+theme_override_constants/minimum_character_width = 3
+text = "2"
+max_length = 4
+caret_blink = true
+
+[node name="HSlider" type="HSlider" parent="GUI/MainMenu/MenuVBoxContainer/TabMenu2/ScrollContainer/PointContainer/TensorProperties/DecayContainerProperties/HBoxContainer3"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+focus_mode = 0
+min_value = -1.0
+max_value = 25.0
+value = 2.0
+
+[node name="AddField" type="Button" parent="GUI/MainMenu/MenuVBoxContainer/TabMenu2/ScrollContainer/PointContainer/TensorProperties"]
+layout_mode = 2
+focus_mode = 0
+text = "Add tensor field"
+
+[node name="HSeparator" type="HSeparator" parent="GUI/MainMenu/MenuVBoxContainer/TabMenu2/ScrollContainer/PointContainer"]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="GUI/MainMenu/MenuVBoxContainer/TabMenu2/ScrollContainer/PointContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="Tensorfield points" type="VBoxContainer" parent="GUI/MainMenu/MenuVBoxContainer/TabMenu2/ScrollContainer/PointContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MainScript" type="Node" parent="." node_paths=PackedStringArray("_guiController")]
+script = ExtResource("4_sxoga")
+_cameraEnvironment = ExtResource("1_m02sb")
+_defaultEnvironment = ExtResource("6_lt8wb")
+_guiController = NodePath("../GUI")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.0906328, -0.96195, -0.257754, 0, -0.258819, 0.965926, -0.995884, -0.0875446, -0.0234575, 0, 4.77529, 0)
+shadow_enabled = true
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 20, 10, -20)
+visible = false
+environment = ExtResource("6_lt8wb")
+projection = 1
+size = 2.0
+script = ExtResource("1_tgwq1")
+
+[node name="Points" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1.19249e-08, 1, 0, -1, 1.19249e-08, 0, 0, 0)
+skeleton = NodePath("../Camera3D")
+script = ExtResource("4_rx5bt")
+
+[node name="Lines" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1.19249e-08, 1, 0, -1, 1.19249e-08, 0, 0, 0)
+skeleton = NodePath("../Camera3D")
+script = ExtResource("3_jelu0")
+
+[node name="Lines2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -1, 2.38498e-08, 0, -2.38498e-08, -1, 0, 0, 0)
+skeleton = NodePath("../Camera3D")
+script = ExtResource("3_jelu0")
+
+[node name="TensorFieldPoints" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1.19249e-08, 1, 0, -1, 1.19249e-08, 0, 0, 0)
+sorting_offset = 1.0
+skeleton = NodePath("../Camera3D")
+script = ExtResource("4_rx5bt")
+
+[node name="RoadModel" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, -20)
+
+[node name="Roads" type="CSGCombiner3D" parent="RoadModel"]
+use_collision = true
+
+[node name="BuildingsModel" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, -10)
+
+[node name="Buildings" type="CSGCombiner3D" parent="BuildingsModel"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -10, 0, 10)
+use_collision = true
+
+[node name="RoadsBuildings" type="CSGCombiner3D" parent="BuildingsModel"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -10, 0, 10)
+use_collision = true
+
+[node name="Floor" type="CSGMesh3D" parent="."]
+transform = Transform3D(20, 0, 0, 0, 1, 0, 0, 0, 20, 20, 0, -20)
+visible = false
+use_collision = true
+mesh = SubResource("1")
+material = ExtResource("7_l5vx1")
+
+[node name="Trees" type="Node3D" parent="."]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
